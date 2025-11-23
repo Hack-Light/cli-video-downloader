@@ -56,6 +56,10 @@ class YouTubeDownloader(BaseDownloader):
             'quiet': False,
             'noplaylist': False,
             'progress_hooks': [],
+            # Skip already-downloaded files and resume partials if present
+            'overwrites': False,
+            'continuedl': True,
+            'download_archive': str(playlist_dir / '.download_archive'),
         }
 
         if playlist_items is not None:
@@ -81,6 +85,8 @@ class YouTubeDownloader(BaseDownloader):
 
         def progress_hook(d):
             if d['status'] == 'finished':
+                progress.advance(overall_task, 1)
+            elif d.get('status') == 'skipped':
                 progress.advance(overall_task, 1)
 
         ydl_opts['progress_hooks'].append(progress_hook)
