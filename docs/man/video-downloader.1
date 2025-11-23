@@ -1,0 +1,58 @@
+.TH VIDEO-DOWNLOADER 1 "April 2025" "video-downloader 1.0.0" "User Commands"
+.SH NAME
+video-downloader \- download videos from YouTube, TikTok, Instagram, and Facebook
+.SH SYNOPSIS
+.B video-downloader
+[\fB-i\fR] [\fB-b\fR FILE] [\fB-p\fR PLATFORM] [\fB-q\fR QUALITY] [\fB-a\fR] [\fB-o\fR DIR] [\fB-l\fR] [URL]
+.PP
+.B vdl
+is a short alias for
+.B video-downloader .
+.SH DESCRIPTION
+Command line tool for fetching videos or audio from major platforms. By default, downloads are saved under \fB~/Downloads/<platform>/\fR. An explicit output directory can be set with \fB-o DIR\fR.
+.SH OPTIONS
+.TP
+\fB-i\fR, \fB--interactive\fR
+Start interactive mode with guided prompts.
+.TP
+\fB-b\fR FILE, \fB--batch\fR FILE
+Batch download URLs listed in a text file (one per line).
+.TP
+\fB-p\fR PLATFORM, \fB--platform\fR PLATFORM
+Explicitly set platform (youtube, tiktok, instagram, facebook). Otherwise auto-detected.
+.TP
+\fB-q\fR QUALITY, \fB--quality\fR QUALITY
+Select quality/format string (yt-dlp syntax). Default: best.
+.TP
+\fB-a\fR, \fB--audio-only\fR
+Download audio only (MP3).
+.TP
+\fB-o\fR DIR, \fB--output\fR DIR
+Base output directory. Platform subfolder is created inside.
+.TP
+\fB-l\fR, \fB--list-formats\fR
+List available formats for the provided URL and exit.
+.TP
+URL
+Single video URL to download. Optional when using \fB-i\fR or \fB-b\fR.
+.SH EXAMPLES
+.TP
+Download a video (auto-detect platform):
+.B video-downloader https://www.youtube.com/watch?v=EXAMPLE
+.TP
+Interactive mode:
+.B video-downloader -i
+.TP
+Audio only:
+.B video-downloader -a https://instagram.com/reel/EXAMPLE/
+.TP
+Specific quality and output directory:
+.B video-downloader -q "best[height<=720]" -o ~/Videos https://tiktok.com/@user/video/123
+.TP
+Batch download from file:
+.B video-downloader -b urls.txt
+.TP
+List formats:
+.B video-downloader -l https://youtube.com/watch?v=EXAMPLE
+.SH AUTHOR
+Somtochukwu Onoh

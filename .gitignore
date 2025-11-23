@@ -1,0 +1,10 @@
+downloads/
+*.pyc
+__pycache__/
+env/
+venv/
+.idea/
+.vscode/
+.DS_Store
+/build/
+video_downloader.egg-info/

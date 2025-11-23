@@ -1,0 +1,6 @@
+yt-dlp[default,curl-cffi]==2025.11.12
+requests>=2.31.0,<3
+browser-cookie3==0.20.1
+rich==13.7.0
+questionary==2.1.1
+argparse==1.4.0
