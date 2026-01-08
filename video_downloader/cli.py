@@ -16,7 +16,7 @@ console = Console()
 
 class VideoDownloaderCLI:
     def __init__(self):
-        self.downloaders = ['youtube', 'tiktok', 'instagram', 'facebook']
+        self.downloaders = ['youtube', 'tiktok', 'instagram', 'facebook', 'twitter']
 
     def list_formats(self, url, platform):
         """List available formats for a video"""
@@ -171,7 +171,7 @@ class VideoDownloaderCLI:
         """Start interactive mode"""
         console.print(Panel.fit(
             "[bold cyan]🎬 Interactive Video Downloader[/bold cyan]\n"
-            "Download videos from YouTube, TikTok, Instagram, and Facebook",
+            "Download videos from YouTube, TikTok, Instagram, Facebook, and Twitter/X",
             subtitle="Press Ctrl+C to exit"
         ))
 
@@ -311,7 +311,7 @@ class VideoDownloaderCLI:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Download videos from YouTube, TikTok, Instagram, and Facebook",
+        description="Download videos from YouTube, TikTok, Instagram, Facebook, and Twitter/X",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -354,7 +354,7 @@ Examples:
                         help='Start index for playlist download')
     parser.add_argument('--playlist-end', type=int, metavar='N',
                         help='End index for playlist download')
-    parser.add_argument('-p', '--platform', choices=['youtube', 'tiktok', 'instagram', 'facebook'],
+    parser.add_argument('-p', '--platform', choices=['youtube', 'tiktok', 'instagram', 'facebook', 'twitter'],
                         help='Specify platform explicitly')
     parser.add_argument('-q', '--quality', default='best',
                         help='Video quality (default: best)')

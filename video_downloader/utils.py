@@ -21,6 +21,8 @@ def detect_platform(url):
         return 'instagram'
     elif 'facebook.com' in url_lower or 'fb.watch' in url_lower:
         return 'facebook'
+    elif 'twitter.com' in url_lower or 'x.com' in url_lower:
+        return 'twitter'
     else:
         return None
 

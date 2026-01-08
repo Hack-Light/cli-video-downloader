@@ -33,6 +33,9 @@ class BaseDownloader:
             },
             'facebook': {
                 'extract_flat': False,
+            },
+            'twitter': {
+                'extract_flat': False,
             }
         }.get(self.platform_name, {})
     
