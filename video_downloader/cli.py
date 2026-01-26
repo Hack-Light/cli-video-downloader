@@ -16,7 +16,8 @@ console = Console()
 
 class VideoDownloaderCLI:
     def __init__(self):
-        self.downloaders = ['youtube', 'tiktok', 'instagram', 'facebook', 'twitter']
+        self.downloaders = ['youtube', 'tiktok',
+                            'instagram', 'facebook', 'twitter']
 
     def list_formats(self, url, platform):
         """List available formats for a video"""
@@ -138,7 +139,8 @@ class VideoDownloaderCLI:
             downloader.download_path.mkdir(parents=True, exist_ok=True)
 
         with console.status("[bold green]Fetching playlist information...[/bold green]"):
-            info = downloader.get_playlist_info(url, playlist_items, playlist_start, playlist_end)
+            info = downloader.get_playlist_info(
+                url, playlist_items, playlist_start, playlist_end)
 
         if not info:
             rprint("[red]❌ Could not fetch playlist info[/red]")
@@ -164,7 +166,8 @@ class VideoDownloaderCLI:
             rprint(f"[blue]📁 Saved to: {result.get('download_dir')}[/blue]")
             return True
         else:
-            rprint(f"\n[red]❌ Playlist download failed: {result.get('error')}[/red]")
+            rprint(
+                f"\n[red]❌ Playlist download failed: {result.get('error')}[/red]")
             return False
 
     def interactive_mode(self):
@@ -200,14 +203,17 @@ class VideoDownloaderCLI:
                         rprint("[red]❌ Could not fetch playlist info[/red]")
                         continue
 
-                    rprint(f"\n[bold green]Playlist Found:[/bold green] {playlist_info['title']}")
-                    rprint(f"Videos: {playlist_info['count']}  |  Uploader: {playlist_info['uploader']}")
+                    rprint(
+                        f"\n[bold green]Playlist Found:[/bold green] {playlist_info['title']}")
+                    rprint(
+                        f"Videos: {playlist_info['count']}  |  Uploader: {playlist_info['uploader']}")
 
                     choice = questionary.select(
                         "Playlist action:",
                         choices=[
                             {"name": "Download entire playlist", "value": "all"},
-                            {"name": "Select specific items (e.g., 1,3,5-8)", "value": "items"},
+                            {"name": "Select specific items (e.g., 1,3,5-8)",
+                             "value": "items"},
                             {"name": "Skip", "value": "skip"},
                         ]
                     ).ask()

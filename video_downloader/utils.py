@@ -28,8 +28,28 @@ def detect_platform(url):
 
 
 def sanitize_filename(filename):
-    """Remove invalid characters from filename"""
-    return re.sub(r'[<>:"/\\|?*]', '', filename)
+    """Remove invalid characters from filename and truncate if too long"""
+    # Remove invalid characters
+    sanitized = re.sub(r'[<>:"/\\|?*]', '', filename)
+
+    # macOS/Linux max filename length is typically 255 characters
+    # Leave some buffer for extensions and path
+    max_length = 200
+
+    if len(sanitized) > max_length:
+        # Truncate but try to preserve extension if present
+        if '.' in sanitized:
+            name, ext = sanitized.rsplit('.', 1)
+            # Reserve space for extension and dot
+            max_name_length = max_length - len(ext) - 1
+            if max_name_length > 0:
+                sanitized = name[:max_name_length] + '.' + ext
+            else:
+                sanitized = sanitized[:max_length]
+        else:
+            sanitized = sanitized[:max_length]
+
+    return sanitized
 
 
 def create_progress_bar():
